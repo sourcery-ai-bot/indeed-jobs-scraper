@@ -74,7 +74,8 @@ def get_jobs_ratings(site, ratings_list):
     for div in jobs_divs:
         rating_span = div.find('span', attrs={'class': 'ratingsContent'})
         if rating_span:
-            scraped_ratings.append(float(rating_span.text.strip().replace(',', '.')))
+            scraped_ratings.append(
+                float(rating_span.text.strip().replace(',', '.')))
         else:
             scraped_ratings.append(None)
 
@@ -83,7 +84,8 @@ def get_jobs_ratings(site, ratings_list):
 
 def get_apply_url(site, apply_list, view_job_url):
     scraped_apply_urls = apply_list
-    jobs_div = site.find_all(name='div', attrs={'class': 'jobsearch-SerpJobCard'})
+    jobs_div = site.find_all(name='div',
+                             attrs={'class': 'jobsearch-SerpJobCard'})
     for div in jobs_div:
         job_id = div.attrs['data-jk']
         apply_url = view_job_url + job_id
@@ -135,26 +137,32 @@ def get_job_description(url, descriptions_list):
     # Use selenium to try to access job full description.
     scraped_descriptions = descriptions_list
     driver = set_driver()
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
 
     print('\nGETTING JOBS DESCRIPTIONS...\n')
 
     driver.get(url)
-    wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'jobsearch-SerpJobCard')))
+    wait.until(
+        EC.presence_of_all_elements_located(
+            (By.CLASS_NAME, 'jobsearch-SerpJobCard')))
     jobs = driver.find_elements_by_class_name('jobsearch-SerpJobCard')
 
     def click_on_job_and_add_description(job_card):
         job_card.click()
         wait.until(EC.presence_of_element_located((By.ID, 'vjs-content')))
-        scraped_descriptions.append(driver.find_element_by_id('vjs-content').text)
+        scraped_descriptions.append(
+            driver.find_element_by_id('vjs-content').text)
 
     for job in jobs:
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'jobsearch-SerpJobCard')))
+        wait.until(
+            EC.element_to_be_clickable(
+                (By.CLASS_NAME, 'jobsearch-SerpJobCard')))
         try:  # click on the job card and add its description to descriptions list
             click_on_job_and_add_description(job)
         except (ElementClickInterceptedException, TimeoutException):
             # if ElementClickInterceptedException, scroll away and try again
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);")
             click_on_job_and_add_description(job)
 
     driver.close()
@@ -164,14 +172,15 @@ def get_job_description(url, descriptions_list):
 
 def paginate_next(url):
     driver = set_driver()
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
     driver.get(url)
 
     # Exclude aria-label atr containing numbers
     # (elements doing so are NOT the "next button")
     try:
-        aria_label = driver.find_element_by_xpath("//ul[@class='pagination-list']/li[last()]/a").get_attribute(
-            'aria-label')
+        aria_label = driver.find_element_by_xpath(
+            "//ul[@class='pagination-list']/li[last()]/a").get_attribute(
+                'aria-label')
     except NoSuchElementException:
         # In case of NoSuchElementException
         # set aria-label to a non-valid string (process will end if it contains digits)
@@ -182,16 +191,23 @@ def paginate_next(url):
         next_url = None
     else:
         try:
-            wait.until(EC.presence_of_element_located((By.XPATH, "//ul[@class='pagination-list']/li[last()]/a")))
-            next_button = driver.find_element(By.XPATH, "//ul[@class='pagination-list']/li[last()]/a")
+            wait.until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//ul[@class='pagination-list']/li[last()]/a")))
+            next_button = driver.find_element(
+                By.XPATH, "//ul[@class='pagination-list']/li[last()]/a")
             try:
                 next_button.click()
                 # time.sleep(2)
                 next_url = driver.current_url
             except (ElementClickInterceptedException, TimeoutException):
                 # if ElementClickInterceptedException, scroll away and try again
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                wait.until(EC.element_to_be_clickable((By.XPATH, "//ul[@class='pagination-list']/li[last()]/a")))
+                driver.execute_script(
+                    "window.scrollTo(0, document.body.scrollHeight);")
+                wait.until(
+                    EC.element_to_be_clickable(
+                        (By.XPATH,
+                         "//ul[@class='pagination-list']/li[last()]/a")))
                 next_button.click()
                 time.sleep(2)
                 next_url = driver.current_url

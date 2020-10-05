@@ -3,7 +3,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, NoSuchElementException
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, NoSuchElementException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -137,7 +137,7 @@ def get_job_description(url, descriptions_list):
     # Use selenium to try to access job full description.
     scraped_descriptions = descriptions_list
     driver = set_driver()
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 5)
 
     print('\nGETTING JOBS DESCRIPTIONS...\n')
 
@@ -165,6 +165,9 @@ def get_job_description(url, descriptions_list):
             driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
             click_on_job_and_add_description(job)
+            # continue
+        except ElementNotInteractableException:
+            continue
 
     driver.close()
     driver.quit()
@@ -173,7 +176,7 @@ def get_job_description(url, descriptions_list):
 
 def paginate_next(url):
     driver = set_driver()
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 5)
     driver.get(url)
 
     # Exclude aria-label atr containing numbers

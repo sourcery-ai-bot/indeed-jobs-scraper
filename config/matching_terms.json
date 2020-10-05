@@ -1,10 +1,83 @@
 {
     "titleMatching": {
-        "select": [],
-        "discard": []
+        "select": [
+            {
+                "term": "design"
+            },
+            {
+                "term": "cad"
+            },
+            {
+                "term": "cam"
+            },
+            {
+                "term": "cae"
+            },
+            {
+                "term": "mechanical"
+            },
+            {
+                "term": "robotic"
+            },
+            {
+                "term": "fem"
+            },
+            {
+                "term": "analysis"
+            },
+            {
+                "term": "junior"
+            },
+            {
+                "term": "graduate"
+            }
+        ],
+        "discard": [
+            {
+                "term": "senior"
+            },
+            {
+                "term": "sr."
+            },
+            {
+                "term": "sr"
+            },
+            {
+                "term": "senior"
+            },
+            {
+                "term": "software"
+            },
+            {
+                "term": "devops"
+            }
+        ]
     },
     "descriptionMatching": {
-        "select": [],
-        "discard": []
+        "select": [
+            {
+                "term": "mechanical"
+            },
+            {
+                "term": "cad"
+            },
+            {
+                "term": "cam"
+            },
+            {
+                "term": "cae"
+            },
+            {
+                "term": "design"
+            }
+        ],
+        "discard": [
+            {
+                "term": "nederlands"
+            },
+            {
+                "term": "frans"
+            }
+        ]
     }
 }

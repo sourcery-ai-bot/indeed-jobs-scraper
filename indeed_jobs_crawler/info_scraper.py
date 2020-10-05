@@ -161,6 +161,7 @@ def get_job_description(url, descriptions_list):
             click_on_job_and_add_description(job)
         except (ElementClickInterceptedException, TimeoutException):
             # if ElementClickInterceptedException, scroll away and try again
+            driver.refresh  #TEST
             driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
             click_on_job_and_add_description(job)

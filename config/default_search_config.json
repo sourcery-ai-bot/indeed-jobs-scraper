@@ -1,28 +1,28 @@
 {
     "defaultSearch": [
         {
-            "baseUrl": "https://www.indeed.com/jobs?"
+            "baseUrl": "https://be.indeed.com/jobs?"
         },
         {
-            "jobTitle": "q=spanish+teacher"
+            "jobTitle": "q=engineer"
         },
         {
-            "location": "l=new+york"
+            "location": null
         },
         {
             "salary": null
         },
         {
-            "postsSince": "fromage=3"
+            "postsSince": "fromage=7"
         },
         {
             "sort": "sort=date"
         },
         {
-            "viewJobUrl": "https://www.indeed.com/viewjob?jk="
+            "viewJobUrl": "https://be.indeed.com/viewjob?jk="
         },
         {
-            "searchTitle": "Spanish teacher"
+            "searchTitle": "engineer"
         }
     ]
 }

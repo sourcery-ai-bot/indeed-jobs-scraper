@@ -137,7 +137,7 @@ def get_job_description(url, descriptions_list):
     # Use selenium to try to access job full description.
     scraped_descriptions = descriptions_list
     driver = set_driver()
-    wait = WebDriverWait(driver, 5)
+    wait = WebDriverWait(driver, 10)
 
     print('\nGETTING JOBS DESCRIPTIONS...\n')
 
@@ -161,11 +161,12 @@ def get_job_description(url, descriptions_list):
             click_on_job_and_add_description(job)
         except (ElementClickInterceptedException, TimeoutException):
             # if ElementClickInterceptedException, scroll away and try again
-            driver.refresh  #TEST
-            driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
-            click_on_job_and_add_description(job)
-            # continue
+            try:
+                driver.execute_script(
+                    "window.scrollTo(0, document.body.scrollHeight);")
+                click_on_job_and_add_description(job)
+            except TimeoutException:
+                continue
         except ElementNotInteractableException:
             continue
 
@@ -176,7 +177,7 @@ def get_job_description(url, descriptions_list):
 
 def paginate_next(url):
     driver = set_driver()
-    wait = WebDriverWait(driver, 5)
+    wait = WebDriverWait(driver, 10)
     driver.get(url)
 
     # Exclude aria-label atr containing numbers

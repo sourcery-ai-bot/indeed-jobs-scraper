@@ -2,42 +2,15 @@
     "titleMatching": {
         "select": [
             {
-                "term": "design"
-            },
-            {
-                "term": "cad"
-            },
-            {
-                "term": "cam"
-            },
-            {
-                "term": "cae"
-            },
-            {
-                "term": "mechanical"
-            },
-            {
-                "term": "robotic"
-            },
-            {
-                "term": "fem"
-            },
-            {
-                "term": "analysis"
-            },
-            {
-                "term": "junior"
-            },
-            {
-                "term": "graduate"
+                "term": "engineer"
             }
         ],
         "discard": [
             {
-                "term": "senior"
+                "term": "software"
             },
             {
-                "term": "sr."
+                "term": "devops"
             },
             {
                 "term": "sr"
@@ -46,38 +19,22 @@
                 "term": "senior"
             },
             {
-                "term": "software"
+                "term": "lead"
             },
             {
-                "term": "devops"
+                "term": "chief"
+            },
+            {
+                "term": "manager"
             }
         ]
     },
     "descriptionMatching": {
         "select": [
             {
-                "term": "mechanical"
-            },
-            {
-                "term": "cad"
-            },
-            {
-                "term": "cam"
-            },
-            {
-                "term": "cae"
-            },
-            {
-                "term": "design"
+                "term": "english"
             }
         ],
-        "discard": [
-            {
-                "term": "nederlands"
-            },
-            {
-                "term": "ervaring"
-            }
-        ]
+        "discard": []
     }
 }

@@ -1,10 +1,10 @@
 {
     "defaultSearch": [
         {
-            "baseUrl": "https://be.indeed.com/jobs?"
+            "baseUrl": "https://se.indeed.com/jobs?"
         },
         {
-            "jobTitle": "q=engineer"
+            "jobTitle": "q=design+engineer"
         },
         {
             "location": null
@@ -13,16 +13,16 @@
             "salary": null
         },
         {
-            "postsSince": "fromage=2"
+            "postsSince": "fromage=4"
         },
         {
             "sort": "sort=date"
         },
         {
-            "viewJobUrl": "https://be.indeed.com/viewjob?jk="
+            "viewJobUrl": "https://se.indeed.com/viewjob?jk="
         },
         {
-            "searchTitle": "engineer"
+            "searchTitle": "design engineer"
         }
     ]
 }

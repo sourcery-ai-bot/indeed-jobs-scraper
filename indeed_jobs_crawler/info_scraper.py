@@ -124,7 +124,10 @@ def set_driver():
     with open('config/driver_window.json') as window:
         minimised = json.load(window).get('minimised')
     chrome_driver = OS.get_driver_name()
-    driver = webdriver.Chrome('indeed_jobs_crawler/' + chrome_driver)
+    options = webdriver.ChromeOptions()
+    options.binary_location = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+    driver = webdriver.Chrome('indeed_jobs_crawler/' + chrome_driver,
+                              chrome_options=options)
     if minimised:
         driver.minimize_window()
     else:

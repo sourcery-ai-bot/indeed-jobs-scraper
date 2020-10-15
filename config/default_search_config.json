@@ -4,7 +4,7 @@
             "baseUrl": "https://se.indeed.com/jobs?"
         },
         {
-            "jobTitle": "q=design+engineer"
+            "jobTitle": "q=árg+diseño"
         },
         {
             "location": null
@@ -22,7 +22,7 @@
             "viewJobUrl": "https://se.indeed.com/viewjob?jk="
         },
         {
-            "searchTitle": "design engineer"
+            "searchTitle": "árg diseño"
         }
     ]
 }

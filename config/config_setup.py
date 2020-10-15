@@ -2,7 +2,7 @@ import config.query_string_maker as qsm
 import json
 
 # load default search data
-with open('config/default_search_config.json') as dsc:
+with open('config/default_search_config.json', encoding='utf8') as dsc:
     search_input_data = json.load(dsc).get('defaultSearch')
 
 base_url = search_input_data[0].get('baseUrl')
@@ -33,7 +33,7 @@ def load_terms_list(dict_list):
 
 
 def open_json_matching_data(match_on, matching_type):
-    with open('config/matching_terms.json') as mt:
+    with open('config/matching_terms.json', encoding='utf8') as mt:
         matching_data = json.load(mt).get(match_on).get(matching_type)
     return matching_data
 
@@ -44,17 +44,19 @@ selected_title_list = open_json_matching_data('titleMatching', 'select')
 title_selected_terms = load_terms_list(selected_title_list)
 
 # load discarding data for job titles
-discarded_title_list = selected_title_list = open_json_matching_data('titleMatching', 'discard')
+discarded_title_list = selected_title_list = open_json_matching_data(
+    'titleMatching', 'discard')
 
 title_discarded_terms = load_terms_list(discarded_title_list)
 
 # load selected data for description
-selected_description_list = open_json_matching_data('descriptionMatching', 'select')
+selected_description_list = open_json_matching_data('descriptionMatching',
+                                                    'select')
 
 description_selected_terms = load_terms_list(selected_description_list)
 
 # load discarding data for description
-discarded_description_list = open_json_matching_data('descriptionMatching', 'discard')
+discarded_description_list = open_json_matching_data('descriptionMatching',
+                                                     'discard')
 
 description_discarded_terms = load_terms_list(discarded_description_list)
-

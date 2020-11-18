@@ -11,8 +11,7 @@ def make_query_param(keywords_list):
 
 # make the query string with the salary
 def make_salary_query_str(salary):
-    base_salary = '%24' + salary + '%2C000'
-    return base_salary
+    return '%24' + salary + '%2C000'
 
 
 # make the full query string

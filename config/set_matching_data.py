@@ -56,20 +56,32 @@ class MatchingData:
         matching_data = {'titleMatching': {'select': [], 'discard': []}, 'descriptionMatching': {'select': [],
                                                                                                  'discard': []}}
         # Add selected terms for title
-        for i in range(len(title_selected_keywords)):
-            matching_data['titleMatching']['select'].append({'term': title_selected_keywords[i]})
+        for title_selected_keyword in title_selected_keywords:
+            matching_data['titleMatching']['select'].append(
+                {'term': title_selected_keyword}
+            )
+
 
         # Add discarded terms for title
-        for i in range(len(title_discarded_keywords)):
-            matching_data['titleMatching']['discard'].append({'term': title_discarded_keywords[i]})
+        for title_discarded_keyword in title_discarded_keywords:
+            matching_data['titleMatching']['discard'].append(
+                {'term': title_discarded_keyword}
+            )
+
 
         # Add selected terms for description
-        for i in range(len(description_selected_keywords)):
-            matching_data['descriptionMatching']['select'].append({'term': description_selected_keywords[i]})
+        for description_selected_keyword in description_selected_keywords:
+            matching_data['descriptionMatching']['select'].append(
+                {'term': description_selected_keyword}
+            )
+
 
         # Add discarded terms for description
-        for i in range(len(description_discarded_keywords)):
-            matching_data['descriptionMatching']['discard'].append({'term': description_discarded_keywords[i]})
+        for description_discarded_keyword in description_discarded_keywords:
+            matching_data['descriptionMatching']['discard'].append(
+                {'term': description_discarded_keyword}
+            )
+
 
         # Dump matching data into json file
         with open('config/matching_terms.json', 'w', encoding='utf-8') as mt:

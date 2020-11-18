@@ -40,38 +40,34 @@ class MatchJob:
 
     def check_title_has_selected_terms(self, title):
         if self.selected_title_terms:
-            if any(term in title.lower() for term in self.selected_title_terms):
-                return True
-            else:
-                return False
+            return any(term in title.lower() for term in self.selected_title_terms)
 
     def check_description_has_selected_terms(self, description):
         if self.selected_description_terms:
-            if any(term in description.lower() for term in self.selected_description_terms):
-                return True
-            else:
-                return False
+            return any(
+                term in description.lower()
+                for term in self.selected_description_terms
+            )
 
     def check_title_has_discarded_terms(self, title):
         if self.discarded_title_items:
-            if any(term in title.lower() for term in self.discarded_title_items):
-                return True
-            else:
-                return False
+            return any(term in title.lower() for term in self.discarded_title_items)
 
     def check_description_has_discarded_terms(self, description):
         if self.discarded_desc_terms:
-            if any(term in description.lower() for term in self.discarded_desc_terms):
-                return True
-            else:
-                return False
+            return any(term in description.lower() for term in self.discarded_desc_terms)
 
     def matching(self):
         for t, d in zip(self.titles, self.descriptions):
-            if self.check_title_has_selected_terms(t) or self.check_description_has_selected_terms(d):
-                if not self.check_title_has_discarded_terms(t) or not self.check_description_has_discarded_terms(d):
-                    idx = self.titles.index(t)
-                    self.keep_job_data(idx)
+            if (
+                self.check_title_has_selected_terms(t)
+                or self.check_description_has_selected_terms(d)
+            ) and (
+                not self.check_title_has_discarded_terms(t)
+                or not self.check_description_has_discarded_terms(d)
+            ):
+                idx = self.titles.index(t)
+                self.keep_job_data(idx)
 
     def get_targeted_jobs_data(self):
         if self.selected_title_terms or self.selected_description_terms or self.discarded_title_items or self.discarded_desc_terms:
